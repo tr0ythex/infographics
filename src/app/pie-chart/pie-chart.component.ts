@@ -6,8 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./pie-chart.component.sass']
 })
 export class PieChartComponent implements OnInit {
-    @Input() width: number;
-    @Input() height: number;
+    @Input() radius: number;
 
     constructor() { }
 
