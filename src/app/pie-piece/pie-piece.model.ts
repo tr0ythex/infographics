@@ -17,10 +17,10 @@ export class PiePiece {
     areAnglesValid(): boolean {
         if (
             this.finishAngle > this.startAngle &&
-            this.startAngle > 0 &&
-            this.startAngle < Math.PI * 2 &&
-            this.finishAngle > 0 &&
-            this.finishAngle < Math.PI * 2
+            this.startAngle >= 0 &&
+            this.startAngle <= Math.PI * 2 &&
+            this.finishAngle >= 0 &&
+            this.finishAngle <= Math.PI * 2
         ) {
             return true;
         }
