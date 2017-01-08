@@ -1,8 +1,3 @@
 <svg [attr.width]="radius * 2" [attr.height]="radius * 2">
-    <svg:g app-pie-piece 
-        [extRadius]="radius"
-        [intRadius]="radius - 10"
-        [startAngle]="0"
-        [finishAngle]="1.57"
-        [color]="green" />
+    <svg:g app-pie-piece *ngFor="let piePiece of piePieces" [piePiece]="piePiece"/>
 </svg>
