@@ -10,18 +10,20 @@ export class PieChartComponent implements OnInit {
     @Input() radius: number;
     piePieces: PiePiece[] = [];
 
-    constructor() {
-    }
+    constructor() {}
 
     ngOnInit() {
-        let piePiece = new PiePiece(
-            this.radius,
-            this.radius - 10,
-            0,
-            Math.PI / 2,
-            'green'
-        );
-        this.piePieces.push(piePiece);
+        this.addPiece(new PiePiece(this.radius, this.radius - 10, 0, Math.PI * .5, 'green'));
+        this.addPiece(new PiePiece(this.radius, this.radius - 10, Math.PI * .5, Math.PI, ''));
+        this.addPiece(new PiePiece(this.radius, this.radius - 10, Math.PI, Math.PI * 1.5, 'yellow'));
+    }
+
+    private addPiece(piePiece: PiePiece) {
+        if (piePiece.areAnglesValid() && piePiece.areRadiusesValid()) {
+            this.piePieces.push(piePiece);
+        } else {
+            console.log('Неверные параметры сектора');
+        }
     }
 
 }

@@ -8,13 +8,10 @@ import { PiePiece } from './pie-piece.model';
 })
 export class PiePieceComponent implements OnInit {
     private _piePiece: PiePiece;
+    private _defaultColor: string = '#000000';
 
     @Input() set piePiece(piePiece: PiePiece) {
-        if (piePiece.areAnglesValid() && piePiece.areRadiusesValid()) {
-            this._piePiece = piePiece;
-        } else {
-            this._piePiece = new PiePiece(0, 0, 0, 0, '');
-        }
+        this._piePiece = piePiece;
     }
 
     get path(): string {
@@ -37,7 +34,7 @@ export class PiePieceComponent implements OnInit {
     }
 
     get fill(): string {
-        return this._piePiece.color;
+        return this._piePiece.color || this._defaultColor;
     }
 
     constructor() { }
