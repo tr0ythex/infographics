@@ -3,13 +3,15 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { PiePieceComponent } from './pie-piece/pie-piece.component';
 
 describe('AppComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [
                 AppComponent,
-                PieChartComponent
+                PieChartComponent,
+                PiePieceComponent
             ],
         });
         TestBed.compileComponents();
