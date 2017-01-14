@@ -24,13 +24,13 @@ describe('PieChartComponent', () => {
         component = fixture.componentInstance;
     });
 
-    it('should create pie chart with radius 50', () => {
-        component.radius = radius;
+    it('should create empty pie chart', () => {
         fixture.detectChanges();
         expect(component).toBeTruthy();
+        expect(component.piePieces).toEqual([]);
     });
 
-    it('should create SVG element with width and height equals to double radius input property', () => {
+    it('should create empty SVG element with width and height equals to double radius input property', () => {
         const svg = <SVGElement>fixture.nativeElement.querySelector('svg');
 
         expect(component.radius).toBeUndefined();
@@ -40,5 +40,18 @@ describe('PieChartComponent', () => {
 
         expect(parseFloat(svg.getAttribute('width'))).toEqual(radius * 2);
         expect(parseFloat(svg.getAttribute('height'))).toEqual(radius * 2);
+
+        expect(svg.children.length).toEqual(0);
+    });
+
+    it('should not add incorrect pie piece to pie chart', () => {
+        component.addPiece(new PiePiece(0, 0, 0, 0, ''));
+        component.addPiece(new PiePiece(3, 10, 0, Math.PI * .5, ''));
+        component.addPiece(new PiePiece(3, -10, 0, Math.PI * .5, ''));
+        component.addPiece(new PiePiece(10, 0, -Math.PI * .5, 0, ''));
+        component.addPiece(new PiePiece(10, 0, Math.PI * .5, Math.PI * 3, ''));
+        component.addPiece(new PiePiece(10, 0, Math.PI * 3, Math.PI * 4, ''));
+        component.addPiece(new PiePiece(10, 0, Math.PI, Math.PI * .5, ''));
+        expect(component.piePieces).toEqual([]);
     });
 });
