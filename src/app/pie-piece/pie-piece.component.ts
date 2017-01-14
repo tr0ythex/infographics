@@ -9,9 +9,13 @@ import { PiePiece } from './pie-piece.model';
 export class PiePieceComponent implements OnInit {
     private _piePiece: PiePiece;
     private _defaultColor: string = '#000000';
+    private _largeArcFlag: number = 0;
 
     @Input() set piePiece(piePiece: PiePiece) {
         this._piePiece = piePiece;
+        if (piePiece.finishAngle - piePiece.startAngle > Math.PI) {
+            this._largeArcFlag = 1;
+        }
     }
 
     get path(): string {
@@ -25,9 +29,9 @@ export class PiePieceComponent implements OnInit {
         const y4 = this._piePiece.extRadius - this._piePiece.intRadius * Math.sin(this._piePiece.startAngle);
         return `
             M ${x1} ${y1}
-            A ${this._piePiece.extRadius} ${this._piePiece.extRadius}, 0, 0, 0, ${x2} ${y2}
+            A ${this._piePiece.extRadius} ${this._piePiece.extRadius}, 0, ${this._largeArcFlag}, 0, ${x2} ${y2}
             L ${x3} ${y3}
-            A ${this._piePiece.intRadius} ${this._piePiece.intRadius}, 0, 0, 1, ${x4} ${y4}
+            A ${this._piePiece.intRadius} ${this._piePiece.intRadius}, 0, ${this._largeArcFlag}, 1, ${x4} ${y4}
             L ${x1} ${y1}
             Z
         `;
@@ -35,6 +39,10 @@ export class PiePieceComponent implements OnInit {
 
     get fill(): string {
         return this._piePiece.color || this._defaultColor;
+    }
+
+    get largeArcFlag(): number {
+        return this._largeArcFlag;
     }
 
     constructor() { }

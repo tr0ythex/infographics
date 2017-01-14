@@ -40,8 +40,6 @@ describe('PieChartComponent', () => {
 
         expect(parseFloat(svg.getAttribute('width'))).toEqual(radius * 2);
         expect(parseFloat(svg.getAttribute('height'))).toEqual(radius * 2);
-
-        expect(svg.children.length).toEqual(0);
     });
 
     it('should not add incorrect pie piece to pie chart', () => {

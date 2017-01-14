@@ -22,10 +22,22 @@ describe('PiePieceComponent', () => {
         component = fixture.componentInstance;
     });
 
-    it('should create pie piece with radiuses 10 and 10, angles 0 and PI/2 and red color', () => {
-        let piePiece = new PiePiece(10, 20, 0, Math.PI * .5, 'red');
+    it('should create pie piece with radiuses 20 and 10, angles 0 and PI/2 and red color', () => {
+        let piePiece = new PiePiece(20, 10, 0, Math.PI * .5, 'red');
         component.piePiece = piePiece;
         fixture.detectChanges();
         expect(component).toBeTruthy();
+    });
+
+    it('should set largeArcFlag correct largeArcFlag to pie piece depending on angles', () => {
+        let piePiece = new PiePiece(20, 10, 0, Math.PI * .5, '');
+        component.piePiece = piePiece;
+        fixture.detectChanges();
+        expect(component.largeArcFlag).toEqual(0);
+
+        piePiece = new PiePiece(20, 10, 0, Math.PI * 1.5, '');
+        component.piePiece = piePiece;
+        fixture.detectChanges();
+        expect(component.largeArcFlag).toEqual(1);
     });
 });
