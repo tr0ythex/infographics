@@ -7,8 +7,9 @@ import { PiePiece } from './pie-piece.model';
     styleUrls: ['./pie-piece.component.sass']
 })
 export class PiePieceComponent implements OnInit {
+    defaultColor: string = '#000000';
+
     private _color: string;
-    private _defaultColor: string = '#000000';
     private _largeArcFlag: number = 0;
     private _path: string;
 
@@ -38,7 +39,7 @@ export class PiePieceComponent implements OnInit {
     }
 
     get fill(): string {
-        return this._color || this._defaultColor;
+        return this._color || this.defaultColor;
     }
 
     get largeArcFlag(): number {
