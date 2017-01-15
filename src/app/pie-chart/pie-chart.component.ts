@@ -13,12 +13,10 @@ export class PieChartComponent implements OnInit {
     constructor() {}
 
     ngOnInit() {
-        this.addPiece(new PiePiece(this.radius, this.radius - 10, 0, Math.PI * .5, 'green'));
-        this.addPiece(new PiePiece(this.radius, this.radius - 10, Math.PI * .5, Math.PI, ''));
-        this.addPiece(new PiePiece(this.radius, this.radius - 10, Math.PI, Math.PI * 1.5, 'yellow'));
+        this.addPiece(new PiePiece(this.radius, this.radius - 10, 0, Math.PI * 2, 'red'));
     }
 
-    private addPiece(piePiece: PiePiece) {
+    addPiece(piePiece: PiePiece) {
         if (piePiece.areAnglesValid() && piePiece.areRadiusesValid()) {
             this.piePieces.push(piePiece);
         } else {
