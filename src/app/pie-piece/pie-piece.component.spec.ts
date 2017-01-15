@@ -62,9 +62,45 @@ describe('PiePieceComponent', () => {
             L 100 50
             Z
         `);
+        piePiece = new PiePiece(20, 10, 1, 3, '');
+        component.piePiece = piePiece;
+        expect(component.path).toEqual(`
+            M 30.806046117362797 3.170580303842069
+            A 20 20, 0, 0, 0, 0.20015006799109258 17.177599838802657
+            L 10.100075033995546 18.58879991940133
+            A 10 10, 0, 0, 1, 25.4030230586814 11.585290151921035
+            L 30.806046117362797 3.170580303842069
+            Z
+        `);
+        piePiece = new PiePiece(50, 0, 5, Math.PI * 2, '');
+        component.piePiece = piePiece;
+        expect(component.path).toEqual(`
+            M 64.1831092731613 97.94621373315692
+            A 50 50, 0, 0, 0, 100 50.000000000000014
+            L 50 50
+            A 0 0, 0, 0, 1, 50 50
+            L 64.1831092731613 97.94621373315692
+            Z
+        `);
     });
 
-    xit('should set path to ...', () => {
-
+    it('should set correct sector path if pie piece is full circle', () => {
+        let piePiece = new PiePiece(50, 40, 0, Math.PI * 2, '');
+        component.piePiece = piePiece;
+        expect(component.path).toEqual(`
+            M 100 50
+            A 50 50, 0, 1, 0, 0 49.99999999999999
+            L 10 49.99999999999999
+            A 40 40, 0, 1, 1, 90 50
+            L 100 50
+            Z
+        
+            M 0 49.99999999999999
+            A 50 50, 0, 1, 0, 100 50.000000000000014
+            L 90 50.00000000000001
+            A 40 40, 0, 1, 1, 10 49.99999999999999
+            L 0 49.99999999999999
+            Z
+        `);
     });
 });
