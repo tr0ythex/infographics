@@ -7,14 +7,18 @@ export class PiePiece {
         public color: string
     ) {}
 
-    areRadiusesValid(): boolean {
+    isValid(): boolean {
+        return this.areRadiusesValid() && this.areAnglesValid();
+    }
+
+    private areRadiusesValid(): boolean {
         if (this.extRadius > this.intRadius && this.intRadius >= 0) {
             return true;
         }
         return false;
     }
 
-    areAnglesValid(): boolean {
+    private areAnglesValid(): boolean {
         if (
             this.finishAngle > this.startAngle &&
             this.startAngle >= 0 &&

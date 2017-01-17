@@ -6,11 +6,11 @@ import { DebugElement } from '@angular/core';
 import { PieChartComponent } from './pie-chart.component';
 import { PiePieceComponent } from '../pie-piece/pie-piece.component';
 import { PiePiece } from '../pie-piece/pie-piece.model';
+import { InfoNumberColor } from '../info/info.types';
 
 describe('PieChartComponent', () => {
     let component: PieChartComponent;
     let fixture: ComponentFixture<PieChartComponent>;
-    let radius = 50;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -24,32 +24,58 @@ describe('PieChartComponent', () => {
         component = fixture.componentInstance;
     });
 
-    it('should create empty pie chart', () => {
-        fixture.detectChanges();
+    it('should create empty pie chart with no info', () => {
+        component.info = [];
         expect(component).toBeTruthy();
-        // expect(component.piePieces).toEqual([]);
     });
 
-    it('should create empty SVG element with width and height equals to double radius input property', () => {
+    it('should create empty SVG element with width and height equals to double extRadius', () => {
         const svg = <SVGElement>fixture.nativeElement.querySelector('svg');
+        const extRadius = 50;
+        const intRadius = 40;
+        expect(component.extRadius).toBeUndefined();
+        expect(component.intRadius).toBeUndefined();
 
-        expect(component.radius).toBeUndefined();
-
-        component.radius = radius;
+        component.extRadius = extRadius;
+        component.intRadius = intRadius;
+        component.info = [];
         fixture.detectChanges();
 
-        expect(parseFloat(svg.getAttribute('width'))).toEqual(radius * 2);
-        expect(parseFloat(svg.getAttribute('height'))).toEqual(radius * 2);
+        expect(parseFloat(svg.getAttribute('width'))).toEqual(extRadius * 2);
+        expect(parseFloat(svg.getAttribute('height'))).toEqual(extRadius * 2);
     });
 
-    it('should not add incorrect pie piece to pie chart', () => {
-        component.addPiece(new PiePiece(0, 0, 0, 0, ''));
-        component.addPiece(new PiePiece(3, 10, 0, Math.PI * .5, ''));
-        component.addPiece(new PiePiece(3, -10, 0, Math.PI * .5, ''));
-        component.addPiece(new PiePiece(10, 0, -Math.PI * .5, 0, ''));
-        component.addPiece(new PiePiece(10, 0, Math.PI * .5, Math.PI * 3, ''));
-        component.addPiece(new PiePiece(10, 0, Math.PI * 3, Math.PI * 4, ''));
-        component.addPiece(new PiePiece(10, 0, Math.PI, Math.PI * .5, ''));
-        expect(component.piePieces).toEqual([]);
+    it('should create SVG element with three sectors with correct colors in it', () => {
+        const svg = <SVGElement>fixture.nativeElement.querySelector('svg');
+        const extRadius = 50;
+        const intRadius = 40;
+        const info: InfoNumberColor[] = [
+            {
+                value: 325,
+                color: 'red'
+            },
+            {
+                value: 100,
+                color: 'blue'
+            },
+            {
+                value: 98,
+                color: 'black'
+            },
+        ];
+
+        component.extRadius = extRadius;
+        component.intRadius = intRadius;
+        component.info = info;
+        fixture.detectChanges();
+
+        // each sector is a <g> element and a <path> inside it
+        let gs = svg.querySelectorAll('g');
+        expect(gs.length).toEqual(3);
+        [].forEach.call(gs, (g, i) => {
+            let paths = (<SVGElement>g).querySelectorAll('path');
+            expect(paths.length).toEqual(1);
+            expect(paths[0].getAttribute('fill')).toEqual(info[i].color);
+        });
     });
 });

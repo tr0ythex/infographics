@@ -34,8 +34,8 @@ export class PieChartComponent implements OnInit {
         }
     }
 
-    addPiece(piePiece: PiePiece) {
-        if (piePiece.areAnglesValid() && piePiece.areRadiusesValid()) {
+    private addPiece(piePiece: PiePiece) {
+        if (piePiece.isValid()) {
             this.piePieces.push(piePiece);
         } else {
             console.log('Неверные параметры сектора');
