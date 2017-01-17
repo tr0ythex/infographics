@@ -1,1 +1,6 @@
-<svg:path [attr.d]="path" [attr.fill]="fill" />
+<svg:path
+    [attr.d]="path"
+    [attr.fill]="fill"
+    [@piePieceState]="state"
+    (mouseover)="state === 'inactive' ? state = 'active' : state = 'inactive'"
+/>
