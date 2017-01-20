@@ -4,6 +4,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { PiePieceComponent } from './pie-piece/pie-piece.component';
+import { PiePieceAnimatedComponent } from './pie-piece-animated/pie-piece-animated.component';
 
 describe('AppComponent', () => {
     beforeEach(() => {
@@ -11,7 +12,7 @@ describe('AppComponent', () => {
             declarations: [
                 AppComponent,
                 PieChartComponent,
-                PiePieceComponent
+                PiePieceAnimatedComponent
             ],
         });
         TestBed.compileComponents();
