@@ -2,11 +2,7 @@ import {
     Component,
     OnInit,
     Input,
-    trigger,
-    state,
-    style,
-    transition,
-    animate
+    ElementRef
 } from '@angular/core';
 import { PiePiece } from './pie-piece.model';
 
@@ -14,29 +10,18 @@ import { PiePiece } from './pie-piece.model';
     selector: '[app-pie-piece]',
     templateUrl: './pie-piece.component.html',
     styleUrls: ['./pie-piece.component.sass'],
-    animations: [
-        trigger('piePieceState', [
-            state('active', style({
-                transform: 'translate(10px, 10px)'
-            })),
-            state('inactive', style({
-                transform: 'translate(0px, 0px)'
-            })),
-            transition('inactive => active', animate('.5s ease-in-out')),
-            transition('active => inactive', animate('.5s ease-in-out'))
-        ])
-    ]
 })
 export class PiePieceComponent implements OnInit {
     defaultColor: string = '#000000';
     state: string = 'inactive';
 
-    private _color: string;
+    private _piePiece: PiePiece;
+    // private _color: string;
     private _largeArcFlag: number = 0;
     private _path: string;
 
     @Input() set piePiece(piePiece: PiePiece) {
-        this._color = piePiece.color;
+        this._piePiece = piePiece;
 
         if (piePiece.finishAngle - piePiece.startAngle > Math.PI) {
             this._largeArcFlag = 1;
@@ -56,12 +41,16 @@ export class PiePieceComponent implements OnInit {
         }
     }
 
+    get piePiece(): PiePiece {
+        return this._piePiece;
+    }
+
     get path(): string {
         return this._path;
     }
 
     get fill(): string {
-        return this._color || this.defaultColor;
+        return this._piePiece.color || this.defaultColor;
     }
 
     get largeArcFlag(): number {

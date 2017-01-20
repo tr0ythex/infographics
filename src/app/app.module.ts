@@ -6,19 +6,21 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { PiePieceComponent } from './pie-piece/pie-piece.component';
+import { PiePieceAnimatedComponent } from './pie-piece-animated/pie-piece-animated.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PieChartComponent,
-    PiePieceComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        PieChartComponent,
+        PiePieceComponent,
+        PiePieceAnimatedComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

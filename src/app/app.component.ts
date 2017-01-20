@@ -14,16 +14,20 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.info = [
             {
-                value: 110,
+                value: 13,
                 color: '#AAA039'
             },
             {
-                value: 290,
+                value: 24,
                 color: '#562A72'
             },
             {
-                value: 54,
+                value: 7,
                 color: '#236267'
+            },
+            {
+                value: 17,
+                color: '#221858'
             }
         ];
     }
