@@ -1,4 +1,16 @@
-<svg [attr.width]="extRadius * 2" [attr.height]="extRadius * 2">
+<svg *ngIf="!animated"
+    [attr.width]="extRadius * 2" 
+    [attr.height]="extRadius * 2"
+>
+    <svg:g app-pie-piece 
+        *ngFor="let piePiece of piePieces"
+        [piePiece]="piePiece"
+    />
+</svg>
+<svg *ngIf="animated"
+    [attr.width]="extRadius * 2" 
+    [attr.height]="extRadius * 2"
+>
     <svg:g app-pie-piece-animated 
         *ngFor="let piePiece of piePieces"
         [piePiece]="piePiece"

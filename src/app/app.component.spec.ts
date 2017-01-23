@@ -12,6 +12,7 @@ describe('AppComponent', () => {
             declarations: [
                 AppComponent,
                 PieChartComponent,
+                PiePieceComponent,
                 PiePieceAnimatedComponent
             ],
         });
@@ -21,6 +22,7 @@ describe('AppComponent', () => {
     it('should create the app', async(() => {
         let fixture = TestBed.createComponent(AppComponent);
         let app = fixture.debugElement.componentInstance;
+        fixture.detectChanges();
         expect(app).toBeTruthy();
     }));
 

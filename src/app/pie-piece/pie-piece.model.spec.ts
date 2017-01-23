@@ -13,15 +13,20 @@ describe('PiePiece model', () => {
         expect(piePiece.isValid()).toBe(false);
         piePiece = new PiePiece(3, 10, 0, Math.PI * .5, '');
         expect(piePiece.isValid()).toBe(false);
-        new PiePiece(3, -10, 0, Math.PI * .5, '');
+        piePiece = new PiePiece(3, -10, 0, Math.PI * .5, '');
         expect(piePiece.isValid()).toBe(false);
-        new PiePiece(10, 0, -Math.PI * .5, 0, '');
+        piePiece = new PiePiece(10, 0, -Math.PI * .5, 0, '');
         expect(piePiece.isValid()).toBe(false);
-        new PiePiece(10, 0, Math.PI * .5, Math.PI * 3, '');
+        piePiece = new PiePiece(10, 0, Math.PI * .5, Math.PI * 3, '');
         expect(piePiece.isValid()).toBe(false);
-        new PiePiece(10, 0, Math.PI * 3, Math.PI * 4, '');
+        piePiece = new PiePiece(10, 0, Math.PI * 3, Math.PI * 4, '');
         expect(piePiece.isValid()).toBe(false);
-        new PiePiece(10, 0, Math.PI, Math.PI * .5, '');
+        piePiece = new PiePiece(10, 0, Math.PI, Math.PI * .5, '');
         expect(piePiece.isValid()).toBe(false);
     });
+
+    // it('should be valid if inputs are valid', () => {
+    //     piePiece = new PiePiece(10, 5, 0, Math.PI, 'red');
+    //     expect(piePiece.isValid()).toBe(true);
+    // });
 });

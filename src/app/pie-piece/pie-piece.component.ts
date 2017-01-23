@@ -16,7 +16,6 @@ export class PiePieceComponent implements OnInit {
     state: string = 'inactive';
 
     private _piePiece: PiePiece;
-    // private _color: string;
     private _largeArcFlag: number = 0;
     private _path: string;
 

@@ -25,18 +25,16 @@ export class PiePieceAnimatedComponent extends PiePieceComponent implements OnIn
 
     @HostListener('mouseover')
     onMouseOver() {
-        (<SVGPathElement>this.elementRef.nativeElement)
-            .style.transition = 'transform .5s ease-out';
-        (<SVGPathElement>this.elementRef.nativeElement)
-            .style.transform = `translate(${this._animateX}px, ${this._animateY}px)`;
+        let elem = <SVGGElement>this.elementRef.nativeElement;
+        elem.style.transition = 'transform .5s ease-out';
+        elem.style.transform = `translate(${this._animateX}px, ${this._animateY}px)`;
     }
 
     @HostListener('mouseout')
     onMouseOut() {
-        (<SVGPathElement>this.elementRef.nativeElement)
-            .style.transition = 'transform .5s ease-out';
-        (<SVGPathElement>this.elementRef.nativeElement)
-            .style.transform = `translate(0px, 0px)`;
+        let elem = <SVGGElement>this.elementRef.nativeElement;
+        elem.style.transition = 'transform .5s ease-out';
+        elem.style.transform = `translate(0px, 0px)`;
     }
 
     constructor(private elementRef: ElementRef) {
@@ -45,7 +43,7 @@ export class PiePieceAnimatedComponent extends PiePieceComponent implements OnIn
 
     ngOnInit() {
         let alpha = this.piePiece.startAngle + (this.piePiece.finishAngle - this.piePiece.startAngle) / 2;
-        this._animateX = this.bl * Math.cos(alpha);
-        this._animateY = -this.bl * Math.sin(alpha);
+        this._animateX =  Math.round(this.bl * Math.cos(alpha));;
+        this._animateY = Math.round(-this.bl * Math.sin(alpha));
     }
 }
