@@ -10,27 +10,21 @@ import { InfoNumberColor } from '../info/info.types';
 export class PieChartComponent implements OnInit {
     @Input() extRadius: number;
     @Input() intRadius: number;
-    @Input() info: InfoNumberColor[];
-    @Input() animated: boolean;
-    piePieces: PiePiece[] = [];
-
-    constructor() {}
-
-    ngOnInit() {
-        let totalSum = this.info.reduce((a, b) => {
+    @Input() set info(info: InfoNumberColor[]) {
+        let totalSum = info.reduce((a, b) => {
             return a + b.value;
         }, 0);
         let accSum = 0;
-        for (let i = 0; i < this.info.length; i++) {
+        for (let i = 0; i < info.length; i++) {
             let a1 = (accSum / totalSum) * Math.PI * 2;
-            accSum += this.info[i].value;
+            accSum += info[i].value;
             let a2 = (accSum / totalSum) * Math.PI * 2;
             let piePiece = new PiePiece(
                 this.extRadius,
                 this.intRadius,
                 a1,
                 a2,
-                this.info[i].color
+                info[i].color
             );
             if (piePiece.isValid()) {
                 this.piePieces.push(piePiece);
@@ -40,13 +34,11 @@ export class PieChartComponent implements OnInit {
             }
         }
     }
+    piePieces: PiePiece[] = [];
 
-    // private addPiece(piePiece: PiePiece) {
-    //     if (piePiece.isValid()) {
-    //         this.piePieces.push(piePiece);
-    //     } else {
-    //         console.log('Неверные параметры сектора');
-    //     }
-    // }
+    constructor() {}
 
+    ngOnInit() {
+        
+    }
 }

@@ -9,11 +9,11 @@ import { PiePieceComponent } from '../pie-piece/pie-piece.component';
 import { PiePiece } from '../pie-piece/pie-piece.model';
 
 @Component({
-    selector: '[app-pie-piece-animated]',
+    selector: '[app-pie-piece-animated-translate]',
     templateUrl: './pie-piece-animated.component.html',
     styleUrls: ['./pie-piece-animated.component.sass'],
 })
-export class PiePieceAnimatedComponent extends PiePieceComponent implements OnInit {
+export class PiePieceAnimatedTranslateComponent extends PiePieceComponent implements OnInit {
     private _animateX: number;
     private _animateY: number;
 
@@ -43,7 +43,7 @@ export class PiePieceAnimatedComponent extends PiePieceComponent implements OnIn
 
     ngOnInit() {
         let alpha = this.piePiece.startAngle + (this.piePiece.finishAngle - this.piePiece.startAngle) / 2;
-        this._animateX =  Math.round(this.bl * Math.cos(alpha));;
+        this._animateX = Math.round(this.bl * Math.cos(alpha));
         this._animateY = Math.round(-this.bl * Math.sin(alpha));
     }
 }

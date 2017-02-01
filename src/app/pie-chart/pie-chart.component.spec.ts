@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 
 import { PieChartComponent } from './pie-chart.component';
 import { PiePieceComponent } from '../pie-piece/pie-piece.component';
-import { PiePieceAnimatedComponent } from '../pie-piece-animated/pie-piece-animated.component';
+import { PiePieceAnimatedTranslateComponent } from '../pie-piece-animated/pie-piece-animated-translate.component';
 import { PiePiece } from '../pie-piece/pie-piece.model';
 import { InfoNumberColor } from '../info/info.types';
 
@@ -26,7 +26,7 @@ describe('PieChartComponent', () => {
             declarations: [
                 PieChartComponent,
                 PiePieceComponent,
-                PiePieceAnimatedComponent
+                PiePieceAnimatedTranslateComponent
             ]
         })
         .compileComponents();

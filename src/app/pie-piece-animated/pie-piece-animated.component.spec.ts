@@ -3,22 +3,22 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { PiePieceAnimatedComponent } from './pie-piece-animated.component';
+import { PiePieceAnimatedTranslateComponent } from './pie-piece-animated-translate.component';
 import { PiePiece } from '../pie-piece/pie-piece.model';
 
-describe('PiePieceAnimatedComponent', () => {
-    let component: PiePieceAnimatedComponent;
-    let fixture: ComponentFixture<PiePieceAnimatedComponent>;
+describe('PiePieceAnimatedTranslateComponent', () => {
+    let component: PiePieceAnimatedTranslateComponent;
+    let fixture: ComponentFixture<PiePieceAnimatedTranslateComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [PiePieceAnimatedComponent]
+            declarations: [PiePieceAnimatedTranslateComponent]
         })
         .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(PiePieceAnimatedComponent);
+        fixture = TestBed.createComponent(PiePieceAnimatedTranslateComponent);
         component = fixture.componentInstance;
     });
 
