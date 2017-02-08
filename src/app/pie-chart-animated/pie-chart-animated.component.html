@@ -1,9 +1,19 @@
 <svg
     [attr.width]="extRadius * 2" 
     [attr.height]="extRadius * 2"
+    [ngSwitch]="animationType"
 >
-    <svg:g app-pie-piece-animated-translate 
-        *ngFor="let piePiece of piePieces"
-        [piePiece]="piePiece"
-    />
-</svg>
+    <svg:g *ngSwitchCase="'translate'">
+        <svg:g app-pie-piece-animated-translate
+            *ngFor="let piePiece of piePieces"
+            [piePiece]="piePiece"
+            [bl]="12"
+        />  
+    </svg:g>
+    <svg:g *ngSwitchCase="'scale'">
+        <svg:g app-pie-piece-animated-scale
+            *ngFor="let piePiece of piePieces"
+            [piePiece]="piePiece" 
+        />  
+    </svg:g>
+</svg>>
