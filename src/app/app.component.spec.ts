@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { PiePieceComponent } from './pie-piece/pie-piece.component';
 import { PiePieceAnimatedTranslateComponent } from './pie-piece-animated/pie-piece-animated-translate.component';
+import { PiePieceAnimatedScaleComponent } from './pie-piece-animated/pie-piece-animated-scale.component';
+import { PieChartAnimatedComponent } from './pie-chart-animated/pie-chart-animated.component';
 
 describe('AppComponent', () => {
     beforeEach(() => {
@@ -12,8 +14,10 @@ describe('AppComponent', () => {
             declarations: [
                 AppComponent,
                 PieChartComponent,
+                PieChartAnimatedComponent,
                 PiePieceComponent,
-                PiePieceAnimatedTranslateComponent
+                PiePieceAnimatedTranslateComponent,
+                PiePieceAnimatedScaleComponent
             ],
         });
         TestBed.compileComponents();

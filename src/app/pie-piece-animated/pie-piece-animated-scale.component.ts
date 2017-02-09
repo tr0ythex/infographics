@@ -20,7 +20,7 @@ export class PiePieceAnimatedScaleComponent extends PiePieceComponent implements
         let elem = <SVGGElement>this.elementRef.nativeElement;
         elem.style.transition = 'transform .5s ease-out';
         elem.style.transformOrigin = `${this.piePiece.extRadius}px ${this.piePiece.extRadius}px`;
-        elem.style.transform = `scale(1.2)`;
+        elem.style.transform = 'scale(1.2)';
     }
 
     @HostListener('mouseout')
