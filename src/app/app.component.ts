@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
     info: InfoNumberColor[] = [];
     extRadius: number = 150;
     intRadius: number = 100;
+    animationType: string = 'translate';
 
     ngOnInit() {
         this.info = [

@@ -1,6 +1,9 @@
+<input [(ngModel)]="animationType" type="radio" name="animationType" value="translate" checked>Translate
+<input [(ngModel)]="animationType" type="radio" name="animationType" value="scale">Scale
+
 <app-pie-chart-animated
     [extRadius]="extRadius"
     [intRadius]="intRadius"
     [info]="info"
-    [animationType]="'translate'"
+    [animationType]="animationType"
 ></app-pie-chart-animated>
