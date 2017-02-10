@@ -16,4 +16,10 @@
             [piePiece]="piePiece" 
         />  
     </svg:g>
+    <svg:g *ngSwitchCase="'fill'">
+        <svg:g app-pie-piece-animated-fill
+            *ngFor="let piePiece of piePieces"
+            [piePiece]="piePiece" 
+        />  
+    </svg:g>
 </svg>
