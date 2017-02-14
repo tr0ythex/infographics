@@ -22,4 +22,10 @@
             [piePiece]="piePiece" 
         />  
     </svg:g>
+    <svg:g *ngSwitchCase="'lines'">
+        <svg:g app-pie-piece-animated-lines
+            *ngFor="let piePiece of piePieces"
+            [piePiece]="piePiece" 
+        />  
+    </svg:g>
 </svg>

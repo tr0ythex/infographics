@@ -33,7 +33,6 @@ export class PiePieceAnimatedTranslateComponent extends PiePieceComponent implem
     @HostListener('mouseout')
     onMouseOut() {
         let elem = <SVGGElement>this.elementRef.nativeElement;
-        let path = <SVGPathElement>elem.querySelector('path');
         elem.style.transition = 'transform .5s ease-out';
         elem.style.transform = `translate(0px, 0px)`;
     }
