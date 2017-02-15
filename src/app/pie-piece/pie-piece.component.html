@@ -1,5 +1,15 @@
 <svg:path animated-legend-line
-    [dirConfig]="{piePiece: piePiece}"
+    [piePiece]="piePiece"
+    [animationConfig]="{
+        property: 'stroke-dashoffset',
+        duration: '.6s',
+        ttf: 'ease-out'
+    }"
+    [styleConfig]="{
+        fill: 'none',
+        stroke: 'black',
+        strokeWidth: '1.1'
+    }"
     [attr.d]="path"
     [attr.fill]="fill"
 />
