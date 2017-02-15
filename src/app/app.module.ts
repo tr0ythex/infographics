@@ -12,6 +12,7 @@ import { PiePieceAnimatedScaleComponent } from './pie-piece-animated/pie-piece-a
 import { PiePieceAnimatedFillComponent } from './pie-piece-animated/pie-piece-animated-fill.component';
 import { PiePieceAnimatedLinesComponent } from './pie-piece-animated/pie-piece-animated-lines.component';
 import { PieChartAnimatedComponent } from './pie-chart-animated/pie-chart-animated.component';
+import { LegendLineDirective } from './pie-piece/animated/legend-line.directive';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { PieChartAnimatedComponent } from './pie-chart-animated/pie-chart-animat
         PiePieceAnimatedScaleComponent,
         PieChartAnimatedComponent,
         PiePieceAnimatedFillComponent,
-        PiePieceAnimatedLinesComponent
+        PiePieceAnimatedLinesComponent,
+        LegendLineDirective
     ],
     imports: [
         BrowserModule,
