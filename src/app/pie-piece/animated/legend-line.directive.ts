@@ -10,45 +10,35 @@ interface DirectiveConfig {
 export class LegendLineDirective implements OnInit {
     @Input() dirConfig: DirectiveConfig;
 
-    private x1: number;
-    private x2: number;
-    private y1: number;
-    private y2: number;
-    private x3: number;
-    private y3: number;
-    private rightSemicircle: boolean = true;
+    private _linePath: string;
 
     constructor(private el: ElementRef) {}
 
     @HostListener('mouseover') onMouseOver() {
-        let elem = <SVGGElement>this.el.nativeElement;
         let path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        path.setAttribute('d',
-            `M ${this.x1} ${this.y1}
-             L ${this.x2} ${this.y2}
-             L ${this.x3} ${this.y3}`
-        );
-        path.setAttribute('fill', 'none');
-        path.setAttribute('stroke', 'black');
-        path.setAttribute('stroke-width', '1.1');
-        elem.parentElement.appendChild(path);
+        path.setAttribute('d', this._linePath);
 
         let pathLen = path.getTotalLength();
+        path.style.fill = 'none';
+        path.style.stroke = 'black';
+        path.style.strokeWidth = '1.1';
         path.style.strokeDasharray = `${pathLen} ${pathLen}`;
         path.style.strokeDashoffset = `${pathLen}`;
+
+        this.el.nativeElement.parentElement.appendChild(path);
+
         path.getBoundingClientRect();
         path.style.transition = 'stroke-dashoffset .6s ease-out';
         path.style.strokeDashoffset = '0';
     }
 
     @HostListener('mouseout') onMouseOut() {
-        let elem = <SVGGElement>this.el.nativeElement;
-        let path = <SVGPathElement>elem.parentElement.lastChild;
+        let path = <SVGPathElement>this.el.nativeElement.parentElement.lastChild;
         let pathLen = path.getTotalLength();
         path.style.transition = 'stroke-dashoffset .6s ease-out';
         path.style.strokeDashoffset = `${pathLen}`;
         path.addEventListener('transitionend', () => {
-            elem.parentElement.removeChild(elem.parentElement.lastChild);
+            this.el.nativeElement.parentElement.removeChild(path);
         });
     }
 
@@ -56,15 +46,26 @@ export class LegendLineDirective implements OnInit {
         let sa = this.dirConfig.piePiece.startAngle;
         let fa = this.dirConfig.piePiece.finishAngle;
         let er = this.dirConfig.piePiece.extRadius;
-        let alpha = sa + (fa - sa) / 2;
-        if (alpha > Math.PI / 2 && alpha <= 3 * Math.PI / 2) {
-            this.rightSemicircle = false;
+        let pieceCenterAngle = sa + (fa - sa) / 2;
+        this.setLinePath(sa, fa, er, pieceCenterAngle);
+    }
+
+    private setLinePath(sa: number, fa: number, er: number, pca: number) {
+        let x1 = er + (er + er / 20) * Math.cos(pca);
+        let y1 = er - (er + er / 20) * Math.sin(pca);
+        let x2 = er + (er + er / 2) * Math.cos(pca);
+        let y2 = er - (er + er / 2) * Math.sin(pca);
+        let x3 = this.getLineDirection(pca) === 'right' ? x2 + er / 2 : x2 - er / 2;
+        let y3 = y2;
+
+        this._linePath = `M ${x1} ${y1} L ${x2} ${y2} L ${x3} ${y3}`;
+    }
+
+    private getLineDirection(pca: number): 'left' | 'right' {
+        if (pca > Math.PI / 2 && pca <= 3 * Math.PI / 2) {
+            return 'left';
+        } else {
+            return'right';
         }
-        this.x1 = er + (er + er / 20) * Math.cos(alpha);
-        this.y1 = er - (er + er / 20) * Math.sin(alpha);
-        this.x2 = (er) + (er + er / 2) * Math.cos(alpha);
-        this.y2 = (er) - (er + er / 2) * Math.sin(alpha);
-        this.x3 = this.rightSemicircle ? this.x2 + er / 2 : this.x2 - er / 2;
-        this.y3 = this.y2;
     }
 }
