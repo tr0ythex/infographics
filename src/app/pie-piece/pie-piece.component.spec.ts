@@ -5,6 +5,7 @@ import { DebugElement } from '@angular/core';
 
 import { PiePieceComponent } from './pie-piece.component';
 import { PiePiece } from './pie-piece.model';
+import { LegendLineDirective } from './animated/legend-line.directive';
 
 describe('PiePieceComponent', () => {
     let component: PiePieceComponent;
@@ -12,7 +13,10 @@ describe('PiePieceComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [PiePieceComponent]
+            declarations: [
+                PiePieceComponent,
+                LegendLineDirective
+            ]
         })
         .compileComponents();
     }));
@@ -102,5 +106,17 @@ describe('PiePieceComponent', () => {
             L 0 49.99999999999999
             Z
         `);
+    });
+
+    it('should add two-lines path on mouse over', () => {
+        let piePiece = new PiePiece(50, 40, 0, Math.PI * 2, '');
+        component.piePiece = piePiece;
+        fixture.detectChanges();
+        const de = fixture.debugElement.query(By.directive(LegendLineDirective));
+        de.triggerEventHandler('mouseover', null);
+        let paths = de.nativeElement.parentElement.querySelectorAll('path');
+        expect(paths.length).toEqual(2);
+        let d = (<SVGPathElement>paths[paths.length - 1]).getAttribute('d');
+        expect(d).toEqual('M -2.5 49.99999999999999 L -25 49.99999999999999 L -50 49.99999999999999');
     });
 });

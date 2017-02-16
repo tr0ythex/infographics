@@ -6,6 +6,8 @@ import { DebugElement } from '@angular/core';
 import { PieChartAnimatedComponent } from './pie-chart-animated.component';
 import { PiePieceAnimatedTranslateComponent } from '../pie-piece-animated/pie-piece-animated-translate.component';
 import { PiePieceAnimatedScaleComponent } from '../pie-piece-animated/pie-piece-animated-scale.component';
+import { PiePieceAnimatedLinesComponent } from '../pie-piece-animated/pie-piece-animated-lines.component';
+import { PiePieceAnimatedFillComponent } from '../pie-piece-animated/pie-piece-animated-fill.component';
 
 describe('PieChartAnimatedComponent', () => {
     let component: PieChartAnimatedComponent;
@@ -16,7 +18,9 @@ describe('PieChartAnimatedComponent', () => {
             declarations: [
                 PieChartAnimatedComponent,
                 PiePieceAnimatedTranslateComponent,
-                PiePieceAnimatedScaleComponent
+                PiePieceAnimatedScaleComponent,
+                PiePieceAnimatedLinesComponent,
+                PiePieceAnimatedFillComponent
             ]
         })
             .compileComponents();
