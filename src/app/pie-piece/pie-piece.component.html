@@ -1,4 +1,4 @@
-<svg:path animated-legend-line
+<!--<svg:path animated-legend-line
     [piePiece]="piePiece"
     [animationConfig]="{
         property: 'stroke-dashoffset',
@@ -10,6 +10,17 @@
         stroke: 'black',
         strokeWidth: '1.1'
     }"
+    [attr.d]="path"
+    [attr.fill]="fill"
+/>-->
+<svg:path animated-radial-move
+    [piePiece]="piePiece"
+    [animationConfig]="{
+        property: 'transform',
+        duration: '.6s',
+        ttf: 'ease-out'
+    }"
+    [radialLength]="12"
     [attr.d]="path"
     [attr.fill]="fill"
 />
