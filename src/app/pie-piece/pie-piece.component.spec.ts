@@ -119,4 +119,6 @@ describe('PiePieceComponent', () => {
         let d = (<SVGPathElement>paths[paths.length - 1]).getAttribute('d');
         expect(d).toEqual('M -2.5 49.99999999999999 L -25 49.99999999999999 L -50 49.99999999999999');
     });
+
+    // it('should ')
 });

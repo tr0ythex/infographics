@@ -1,4 +1,4 @@
-<!--<svg:path animated-legend-line
+<svg:path *ngIf="type === 'legendLine'" animated-legend-line
     [piePiece]="piePiece"
     [animationConfig]="{
         property: 'stroke-dashoffset',
@@ -12,8 +12,8 @@
     }"
     [attr.d]="path"
     [attr.fill]="fill"
-/>-->
-<svg:path animated-radial-move
+/>
+<svg:path *ngIf="type === 'radialMove'" animated-radial-move
     [piePiece]="piePiece"
     [animationConfig]="{
         property: 'transform',

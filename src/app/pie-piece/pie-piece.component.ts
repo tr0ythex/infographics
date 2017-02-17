@@ -19,6 +19,7 @@ export class PiePieceComponent implements OnInit {
     private _largeArcFlag: number = 0;
     private _path: string;
 
+    @Input() type: string;
     @Input() set piePiece(piePiece: PiePiece) {
         this._piePiece = piePiece;
 

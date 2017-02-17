@@ -10,6 +10,7 @@ import { InfoNumberColor } from '../info/info.types';
 export class PieChartComponent implements OnInit {
     @Input() extRadius: number;
     @Input() intRadius: number;
+    @Input() pieChartType: string;
     @Input() set info(info: InfoNumberColor[]) {
         let totalSum = info.reduce((a, b) => {
             return a + b.value;
@@ -38,7 +39,5 @@ export class PieChartComponent implements OnInit {
 
     constructor() {}
 
-    ngOnInit() {
-        
-    }
+    ngOnInit() {}
 }

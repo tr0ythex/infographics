@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
     info: InfoNumberColor[] = [];
     extRadius: number = 150;
     intRadius: number = 100;
-    animationType: string = 'translate';
+    pieChartType: string = 'legendLine';
 
     ngOnInit() {
         this.info = [

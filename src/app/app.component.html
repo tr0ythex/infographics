@@ -1,10 +1,9 @@
-<input [(ngModel)]="animationType" type="radio" name="animationType" value="translate" checked>Translate
-<input [(ngModel)]="animationType" type="radio" name="animationType" value="scale">Scale
-<input [(ngModel)]="animationType" type="radio" name="animationType" value="fill">Fill
-<input [(ngModel)]="animationType" type="radio" name="animationType" value="lines">Lines
+<input [(ngModel)]="pieChartType" type="radio" name="pieChartType" value="legendLine" checked>Линии
+<input [(ngModel)]="pieChartType" type="radio" name="pieChartType" value="radialMove">Радиальный сдвиг
 
 <app-pie-chart
     [extRadius]="extRadius"
     [intRadius]="intRadius"
     [info]="info"
+    [pieChartType]="pieChartType"
 ></app-pie-chart>
