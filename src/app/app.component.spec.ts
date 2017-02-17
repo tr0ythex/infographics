@@ -6,12 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { PiePieceComponent } from './pie-piece/pie-piece.component';
-import { PiePieceAnimatedTranslateComponent } from './pie-piece-animated/pie-piece-animated-translate.component';
 import { PiePieceAnimatedScaleComponent } from './pie-piece-animated/pie-piece-animated-scale.component';
-import { PiePieceAnimatedLinesComponent } from './pie-piece-animated/pie-piece-animated-lines.component';
 import { PiePieceAnimatedFillComponent } from './pie-piece-animated/pie-piece-animated-fill.component';
-import { PieChartAnimatedComponent } from './pie-chart-animated/pie-chart-animated.component';
 import { LegendLineDirective } from './pie-piece/animated/legend-line.directive';
+import { RadialMoveDirective } from './pie-piece/animated/radial-move.directive';
 
 describe('AppComponent', () => {
     beforeEach(() => {
@@ -23,13 +21,11 @@ describe('AppComponent', () => {
             declarations: [
                 AppComponent,
                 PieChartComponent,
-                PieChartAnimatedComponent,
                 PiePieceComponent,
-                PiePieceAnimatedTranslateComponent,
                 PiePieceAnimatedScaleComponent,
                 PiePieceAnimatedFillComponent,
-                PiePieceAnimatedLinesComponent,
-                LegendLineDirective
+                LegendLineDirective,
+                RadialMoveDirective
             ],
         });
         TestBed.compileComponents();

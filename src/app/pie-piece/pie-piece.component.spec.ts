@@ -6,6 +6,7 @@ import { DebugElement } from '@angular/core';
 import { PiePieceComponent } from './pie-piece.component';
 import { PiePiece } from './pie-piece.model';
 import { LegendLineDirective } from './animated/legend-line.directive';
+import { RadialMoveDirective } from './animated/radial-move.directive';
 
 describe('PiePieceComponent', () => {
     let component: PiePieceComponent;
@@ -15,7 +16,8 @@ describe('PiePieceComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 PiePieceComponent,
-                LegendLineDirective
+                LegendLineDirective,
+                RadialMoveDirective
             ]
         })
         .compileComponents();
@@ -111,6 +113,7 @@ describe('PiePieceComponent', () => {
     it('should add two-lines path on mouse over', () => {
         let piePiece = new PiePiece(50, 40, 0, Math.PI * 2, '');
         component.piePiece = piePiece;
+        component.type = 'legendLine';
         fixture.detectChanges();
         const de = fixture.debugElement.query(By.directive(LegendLineDirective));
         de.triggerEventHandler('mouseover', null);
@@ -120,5 +123,24 @@ describe('PiePieceComponent', () => {
         expect(d).toEqual('M -2.5 49.99999999999999 L -25 49.99999999999999 L -50 49.99999999999999');
     });
 
-    // it('should ')
+    it('should be radial moved on mouse over and back on mouse out', () => {
+        let piePiece = new PiePiece(50, 40, 0, Math.PI * .3, '');
+        component.piePiece = piePiece;
+        component.type = 'radialMove';
+        fixture.detectChanges();
+
+        let de = fixture.debugElement.query(By.directive(RadialMoveDirective));
+        let directive = de.injector.get(RadialMoveDirective) as RadialMoveDirective;
+        let el = de.nativeElement as SVGPathElement;
+
+        let alpha = piePiece.startAngle + (piePiece.finishAngle - piePiece.startAngle) / 2;
+        let x = Math.round(directive.radialLength * Math.cos(alpha));
+        let y = Math.round(-directive.radialLength * Math.sin(alpha));
+
+        directive.onMouseOver();
+        expect(el.style.transform).toEqual(`translate(${x}px, ${y}px)`);
+
+        directive.onMouseOut();
+        expect(el.style.transform).toEqual(`translate(0px, 0px)`);
+    });
 });

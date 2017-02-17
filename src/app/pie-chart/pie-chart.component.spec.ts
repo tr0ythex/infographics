@@ -7,16 +7,18 @@ import { PieChartComponent } from './pie-chart.component';
 import { PiePieceComponent } from '../pie-piece/pie-piece.component';
 import { PiePiece } from '../pie-piece/pie-piece.model';
 import { LegendLineDirective } from '../pie-piece/animated/legend-line.directive';
+import { RadialMoveDirective } from '../pie-piece/animated/radial-move.directive';
 import { InfoNumberColor } from '../info/info.types';
 
 describe('PieChartComponent', () => {
     let component: PieChartComponent;
     let fixture: ComponentFixture<PieChartComponent>;
 
-    function setComponent(extRadius: number, intRadius: number, info: InfoNumberColor[], animated: boolean) {
+    function setComponent(extRadius: number, intRadius: number, info: InfoNumberColor[], type: string) {
         component.extRadius = extRadius;
         component.intRadius = intRadius;
         component.info = info;
+        component.pieChartType = type;
         fixture.detectChanges();
     }
 
@@ -25,7 +27,8 @@ describe('PieChartComponent', () => {
             declarations: [
                 PieChartComponent,
                 PiePieceComponent,
-                LegendLineDirective
+                LegendLineDirective,
+                RadialMoveDirective
             ]
         })
         .compileComponents();
@@ -41,7 +44,7 @@ describe('PieChartComponent', () => {
     });
 
     it('should create SVG element with width and height equals to double extRadius', () => {
-        setComponent(50, 40, [], false);
+        setComponent(50, 40, [], 'legendLine');
         const svg = <SVGElement>fixture.nativeElement.querySelector('svg');
         expect(parseFloat(svg.getAttribute('width'))).toEqual(50 * 2);
         expect(parseFloat(svg.getAttribute('height'))).toEqual(50 * 2);
@@ -62,7 +65,7 @@ describe('PieChartComponent', () => {
                 color: 'black'
             },
         ];
-        setComponent(50, 40, info, false);
+        setComponent(50, 40, info, 'legendLine');
         // each sector is a <g> element and a <path> inside it
         const svg = <SVGElement>fixture.nativeElement.querySelector('svg');
         const gs = svg.querySelectorAll('g');
@@ -85,7 +88,7 @@ describe('PieChartComponent', () => {
                 color: ''
             }
         ];
-        setComponent(50, 40, info, false);
+        setComponent(50, 40, info, 'legendLine');
         const svg = <SVGElement>fixture.nativeElement.querySelector('svg');
         expect(svg.children.length).toEqual(0);
     });
