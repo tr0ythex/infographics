@@ -1,6 +1,7 @@
-import { 
+import {
     Component,
     OnInit,
+    OnChanges,
     Input,
     ElementRef
 } from '@angular/core';
@@ -11,9 +12,9 @@ import { PiePiece } from './pie-piece.model';
     templateUrl: './pie-piece.component.html',
     styleUrls: ['./pie-piece.component.sass'],
 })
-export class PiePieceComponent implements OnInit {
+export class PiePieceComponent implements OnInit, OnChanges {
     defaultColor: string = '#000000';
-    state: string = 'inactive';
+    defaultIntRadius: number;
 
     private _piePiece: PiePiece;
     private _largeArcFlag: number = 0;
@@ -22,6 +23,7 @@ export class PiePieceComponent implements OnInit {
     @Input() type: string;
     @Input() set piePiece(piePiece: PiePiece) {
         this._piePiece = piePiece;
+        this.defaultIntRadius = this.defaultIntRadius || piePiece.intRadius;
 
         if (piePiece.finishAngle - piePiece.startAngle > Math.PI) {
             this._largeArcFlag = 1;
@@ -60,6 +62,27 @@ export class PiePieceComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+    }
+
+    ngOnChanges() {
+        // TODO: intRadius setter
+        if (this.type === 'radialScale' && this.piePiece.intRadius > 0) {
+            this.piePiece = new PiePiece(
+                this.piePiece.extRadius,
+                0,
+                this.piePiece.startAngle,
+                this.piePiece.finishAngle,
+                this.piePiece.color
+            );
+        } else {
+            this.piePiece = new PiePiece(
+                this.piePiece.extRadius,
+                this.defaultIntRadius,
+                this.piePiece.startAngle,
+                this.piePiece.finishAngle,
+                this.piePiece.color
+            );
+        }
     }
 
     private getPiePiecePath(r1: number, r2: number, a1: number, a2: number): string {

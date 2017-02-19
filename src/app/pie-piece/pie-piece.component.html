@@ -24,3 +24,14 @@
     [attr.d]="path"
     [attr.fill]="fill"
 />
+<svg:path *ngIf="type === 'radialScale'" animated-radial-scale
+    [piePiece]="piePiece"
+    [animationConfig]="{
+        property: 'transform',
+        duration: '.6s',
+        ttf: 'ease-out'
+    }"
+    [scaleFactor]="1.2"
+    [attr.d]="path"
+    [attr.fill]="fill"
+/>
