@@ -20,7 +20,10 @@ export class RadialScaleDirective implements OnInit {
 
     @Input() piePiece: PiePiece;
     @Input() animationConfig: AnimationConfig;
-    @Input() scaleFactor: number;
+    @Input() set scaleFactor(factor: number) {
+        this._mouseOverScale = `scale(${factor})`;
+        this._mouseOutScale = `scale(1.0)`;
+    }
 
     @HostListener('mouseover') onMouseOver() {
         this.el.nativeElement.style.transform = this._mouseOverScale;
@@ -39,7 +42,5 @@ export class RadialScaleDirective implements OnInit {
             ${this.animationConfig.ttf}
         `;
         this.el.nativeElement.style.transformOrigin = `${this.piePiece.extRadius}px ${this.piePiece.extRadius}px`;
-        this._mouseOverScale = `scale(${this.scaleFactor})`;
-        this._mouseOutScale = `scale(1.0)`;
     }
 }

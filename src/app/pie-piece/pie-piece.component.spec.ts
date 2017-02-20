@@ -7,6 +7,7 @@ import { PiePieceComponent } from './pie-piece.component';
 import { PiePiece } from './pie-piece.model';
 import { LegendLineDirective } from './animated/legend-line.directive';
 import { RadialMoveDirective } from './animated/radial-move.directive';
+import { RadialScaleDirective } from './animated/radial-scale.directive';
 
 describe('PiePieceComponent', () => {
     let component: PiePieceComponent;
@@ -17,7 +18,8 @@ describe('PiePieceComponent', () => {
             declarations: [
                 PiePieceComponent,
                 LegendLineDirective,
-                RadialMoveDirective
+                RadialMoveDirective,
+                RadialScaleDirective
             ]
         })
         .compileComponents();
@@ -142,5 +144,26 @@ describe('PiePieceComponent', () => {
 
         directive.onMouseOut();
         expect(el.style.transform).toEqual(`translate(0px, 0px)`);
+    });
+
+    it('should be radial scaled on mouse over and back on mouse out', () => {
+        let piePiece = new PiePiece(50, 40, 0, Math.PI * .3, '');
+        component.piePiece = piePiece;
+        component.type = 'radialScale';
+        fixture.detectChanges();
+
+        let de = fixture.debugElement.query(By.directive(RadialScaleDirective));
+        let directive = de.injector.get(RadialScaleDirective) as RadialScaleDirective;
+        let el = de.nativeElement as SVGPathElement;
+        let factor = 2;
+        directive.scaleFactor = factor;
+
+        expect(el.style.transformOrigin).toEqual(`${piePiece.extRadius}px ${piePiece.extRadius}px 0px`);
+
+        directive.onMouseOver();
+        expect(el.style.transform).toEqual(`scale(${factor})`);
+
+        directive.onMouseOut();
+        expect(el.style.transform).toEqual('scale(1)');
     });
 });

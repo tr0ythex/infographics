@@ -8,6 +8,7 @@ import { PiePieceComponent } from '../pie-piece/pie-piece.component';
 import { PiePiece } from '../pie-piece/pie-piece.model';
 import { LegendLineDirective } from '../pie-piece/animated/legend-line.directive';
 import { RadialMoveDirective } from '../pie-piece/animated/radial-move.directive';
+import { RadialScaleDirective } from '../pie-piece/animated/radial-scale.directive';
 import { InfoNumberColor } from '../info/info.types';
 
 describe('PieChartComponent', () => {
@@ -28,7 +29,8 @@ describe('PieChartComponent', () => {
                 PieChartComponent,
                 PiePieceComponent,
                 LegendLineDirective,
-                RadialMoveDirective
+                RadialMoveDirective,
+                RadialScaleDirective
             ]
         })
         .compileComponents();
