@@ -35,3 +35,16 @@
     [attr.d]="path"
     [attr.fill]="fill"
 />
+<svg:path *ngIf="type === 'fill'" animated-fill
+    [piePiece]="piePiece"
+    [animationConfig]="{
+        property: 'all',
+        duration: '.6s',
+        ttf: 'ease-out'
+    }"
+    [styleConfig]="{
+        fillOpacity: '.4'
+    }"
+    [attr.d]="path"
+    [attr.fill]="fill"
+/>
