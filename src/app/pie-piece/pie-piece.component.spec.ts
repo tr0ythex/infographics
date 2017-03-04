@@ -8,6 +8,13 @@ import { PiePiece } from './pie-piece.model';
 import { LegendLineDirective } from './animated/legend-line.directive';
 import { RadialMoveDirective } from './animated/radial-move.directive';
 import { RadialScaleDirective } from './animated/radial-scale.directive';
+import { FillDirective } from './animated/fill.directive';
+
+// style property returns float values with comma instead of decimal point
+// so change comma to point
+function formatStyleOutput(stylePropertyValue: string): string {
+    return stylePropertyValue.replace(',', '.');
+}
 
 describe('PiePieceComponent', () => {
     let component: PiePieceComponent;
@@ -19,7 +26,8 @@ describe('PiePieceComponent', () => {
                 PiePieceComponent,
                 LegendLineDirective,
                 RadialMoveDirective,
-                RadialScaleDirective
+                RadialScaleDirective,
+                FillDirective
             ]
         })
         .compileComponents();
@@ -165,5 +173,27 @@ describe('PiePieceComponent', () => {
 
         directive.onMouseOut();
         expect(el.style.transform).toEqual('scale(1)');
+    });
+
+    it('should be faded-out on mouse over and back on mouse out', () => {
+        let piePiece = new PiePiece(50, 40, 0, Math.PI * .3, '');
+        component.piePiece = piePiece;
+        component.type = 'fill';
+        fixture.detectChanges();
+
+        let de = fixture.debugElement.query(By.directive(FillDirective));
+        let directive = de.injector.get(FillDirective) as FillDirective;
+        let fillOpacity = '0.4';
+        directive.styleConfig = { fillOpacity: fillOpacity };
+
+        let el = de.nativeElement as SVGPathElement;
+
+        directive.onMouseOver();
+        expect(el.style.stroke).toEqual(el.style.fill);
+        expect(formatStyleOutput(el.style.fillOpacity)).toEqual(fillOpacity);
+
+        directive.onMouseOut();
+        expect(el.style.stroke).toEqual('black');
+        expect(el.style.fillOpacity).toEqual('1');
     });
 });

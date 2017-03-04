@@ -8,10 +8,7 @@ interface AnimationConfig {
 }
 
 interface StyleConfig {
-    fill: string;
     fillOpacity: string;
-    stroke: string;
-    strokeWidth: string;
 }
 
 @Directive({ selector: '[animated-fill]' })
