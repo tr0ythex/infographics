@@ -11,6 +11,8 @@ import { LegendLineDirective } from './pie-piece/animated/legend-line.directive'
 import { RadialMoveDirective } from './pie-piece/animated/radial-move.directive';
 import { RadialScaleDirective } from './pie-piece/animated/radial-scale.directive';
 import { FillDirective } from './pie-piece/animated/fill.directive';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { BarPieceComponent } from './bar-piece/bar-piece.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +22,9 @@ import { FillDirective } from './pie-piece/animated/fill.directive';
         LegendLineDirective,
         RadialMoveDirective,
         RadialScaleDirective,
-        FillDirective
+        FillDirective,
+        BarChartComponent,
+        BarPieceComponent
     ],
     imports: [
         BrowserModule,
