@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { BarPiece } from './bar-piece.model';
 
 @Component({
     selector: '[app-bar-piece]',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./bar-piece.component.sass']
 })
 export class BarPieceComponent implements OnInit {
-    @Input() barPiece: any;
+    @Input() barPiece: BarPiece;
 
     constructor() { }
 
